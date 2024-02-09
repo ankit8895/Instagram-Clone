@@ -7,7 +7,7 @@ import {
   InstagramMobileLogo,
   NotificationsLogo,
   SearchLogo,
-} from '../../assets/constant';
+} from '../../assets/constants';
 import { AiFillHome } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
 
