@@ -1,6 +1,5 @@
-import React from 'react';
-import { auth, firestore } from '../firebase/firebase';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth, firestore } from '../firebase/firebase';
 import {
   collection,
   doc,
@@ -13,7 +12,7 @@ import useShowToast from './useShowToast';
 import useAuthStore from '../store/authStore';
 
 const useSignUpWithEmailAndPassword = () => {
-  const [createUserWithEmailAndPassword, loading, error] =
+  const [createUserWithEmailAndPassword, , loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const showToast = useShowToast();
   const loginUser = useAuthStore((state) => state.login);
@@ -48,7 +47,6 @@ const useSignUpWithEmailAndPassword = () => {
         showToast('Error', error.message, 'error');
         return;
       }
-
       if (newUser) {
         const userDoc = {
           uid: newUser.user.uid,
@@ -60,7 +58,7 @@ const useSignUpWithEmailAndPassword = () => {
           followers: [],
           following: [],
           posts: [],
-          createAt: Date.now(),
+          createdAt: Date.now(),
         };
         await setDoc(doc(firestore, 'users', newUser.user.uid), userDoc);
         localStorage.setItem('user-info', JSON.stringify(userDoc));
@@ -70,6 +68,7 @@ const useSignUpWithEmailAndPassword = () => {
       showToast('Error', error.message, 'error');
     }
   };
+
   return { loading, error, signup };
 };
 

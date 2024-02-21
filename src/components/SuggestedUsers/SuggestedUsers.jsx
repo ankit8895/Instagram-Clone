@@ -1,5 +1,4 @@
-import React from 'react';
-import { Flex, Link, Text, VStack, Box } from '@chakra-ui/react';
+import { Box, Flex, Link, Text, VStack } from '@chakra-ui/react';
 import SuggestedHeader from './SuggestedHeader';
 import SuggestedUser from './SuggestedUser';
 import useGetSuggestedUsers from '../../hooks/useGetSuggestedUsers';
@@ -7,8 +6,9 @@ import useGetSuggestedUsers from '../../hooks/useGetSuggestedUsers';
 const SuggestedUsers = () => {
   const { isLoading, suggestedUsers } = useGetSuggestedUsers();
 
-  //optional: render loading skeleton
+  // optional: render loading skeleton
   if (isLoading) return null;
+
   return (
     <VStack py={8} px={6} gap={4}>
       <SuggestedHeader />
@@ -34,7 +34,7 @@ const SuggestedUsers = () => {
       ))}
 
       <Box fontSize={12} color={'gray.500'} mt={5} alignSelf={'start'}>
-        © 2024 Build By{' '}
+        © 2023 Built By{' '}
         <Link
           href='https://github.com/ankit8895'
           target='_blank'

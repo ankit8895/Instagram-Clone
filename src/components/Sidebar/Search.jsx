@@ -15,8 +15,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { SearchLogo } from '../../assets/constants';
-import { useRef } from 'react';
 import useSearchUser from '../../hooks/useSearchUser';
+import { useRef } from 'react';
 import SuggestedUser from '../SuggestedUsers/SuggestedUser';
 
 const Search = () => {
@@ -28,6 +28,7 @@ const Search = () => {
     e.preventDefault();
     getUserProfile(searchRef.current.value);
   };
+
   return (
     <>
       <Tooltip
@@ -62,7 +63,7 @@ const Search = () => {
             <form onSubmit={handleSearchUser}>
               <FormControl>
                 <FormLabel>Username</FormLabel>
-                <Input placeholder='asaprogrammer' ref={searchRef} />
+                <Input placeholder='JohnDoe' ref={searchRef} />
               </FormControl>
 
               <Flex w={'full'} justifyContent={'flex-end'}>
@@ -77,7 +78,6 @@ const Search = () => {
                 </Button>
               </Flex>
             </form>
-
             {user && <SuggestedUser user={user} setUser={setUser} />}
           </ModalBody>
         </ModalContent>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/firebase';
 import useShowToast from './useShowToast';
@@ -15,9 +14,10 @@ const useLogout = () => {
       localStorage.removeItem('user-info');
       logoutUser();
     } catch (error) {
-      showToast('Error', error.message, error);
+      showToast('Error', error.message, 'error');
     }
   };
+
   return { handleLogout, isLoggingOut, error };
 };
 

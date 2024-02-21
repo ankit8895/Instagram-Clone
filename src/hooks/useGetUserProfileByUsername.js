@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useShowToast from './useShowToast';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../firebase/firebase';
@@ -20,6 +20,7 @@ const useGetUserProfileByUsername = (username) => {
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) return setUserProfile(null);
+
         let userDoc;
         querySnapshot.forEach((doc) => {
           userDoc = doc.data();
@@ -32,6 +33,7 @@ const useGetUserProfileByUsername = (username) => {
         setIsLoading(false);
       }
     };
+
     getUserProfile();
   }, [setUserProfile, username, showToast]);
 

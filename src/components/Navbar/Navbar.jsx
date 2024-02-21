@@ -1,10 +1,9 @@
 import { Button, Container, Flex, Image } from '@chakra-ui/react';
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <Container maxW={'container.lg'}>
+    <Container maxW={'container.lg'} my={4}>
       <Flex
         w={'full'}
         justifyContent={{ base: 'center', sm: 'space-between' }}

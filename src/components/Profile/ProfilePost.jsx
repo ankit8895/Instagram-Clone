@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Button,
   Divider,
   Flex,
@@ -10,13 +9,11 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Text,
   VStack,
   useDisclosure,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaComment } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -25,10 +22,11 @@ import PostFooter from '../FeedPosts/PostFooter';
 import useUserProfileStore from '../../store/userProfileStore';
 import useAuthStore from '../../store/authStore';
 import useShowToast from '../../hooks/useShowToast';
-import usePostStore from '../../store/postStore';
+import { useState } from 'react';
 import { deleteObject, ref } from 'firebase/storage';
 import { firestore, storage } from '../../firebase/firebase';
 import { arrayRemove, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import usePostStore from '../../store/postStore';
 import Caption from '../Comment/Caption';
 
 const ProfilePost = ({ post }) => {
@@ -91,7 +89,7 @@ const ProfilePost = ({ post }) => {
         >
           <Flex alignItems={'center'} justifyContent={'center'} gap={50}>
             <Flex>
-              <AiFillHeart />
+              <AiFillHeart size={20} />
               <Text fontWeight={'bold'} ml={2}>
                 {post.likes.length}
               </Text>
@@ -126,7 +124,7 @@ const ProfilePost = ({ post }) => {
           <ModalCloseButton />
           <ModalBody bg={'black'} pb={5}>
             <Flex
-              gap={4}
+              gap='4'
               w={{ base: '90%', sm: '70%', md: 'full' }}
               mx={'auto'}
               maxH={'90vh'}
@@ -141,7 +139,7 @@ const ProfilePost = ({ post }) => {
                 justifyContent={'center'}
                 alignItems={'center'}
               >
-                <Image src={post.imageURL} alt='' />
+                <Image src={post.imageURL} alt='profile post' />
               </Flex>
               <Flex
                 flex={1}
@@ -154,7 +152,7 @@ const ProfilePost = ({ post }) => {
                     <Avatar
                       src={userProfile.profilePicURL}
                       size={'sm'}
-                      name='As a Programmer'
+                      name='user profile pic'
                     />
                     <Text fontWeight={'bold'} fontSize={12}>
                       {userProfile.username}
@@ -171,15 +169,14 @@ const ProfilePost = ({ post }) => {
                       onClick={handleDeletePost}
                       isLoading={isDeleting}
                     >
-                      <MdDelete size={20} cursor={'pointer'} />
+                      <MdDelete size={20} cursor='pointer' />
                     </Button>
                   )}
                 </Flex>
-
                 <Divider my={4} bg={'gray.500'} />
 
                 <VStack
-                  w={'full'}
+                  w='full'
                   alignItems={'start'}
                   maxH={'350px'}
                   overflowY={'auto'}
@@ -187,12 +184,13 @@ const ProfilePost = ({ post }) => {
                   {/* CAPTION */}
                   {post.caption && <Caption post={post} />}
                   {/* COMMENTS */}
-                  {post.comments.map((comment) => (
-                    <Comment key={comment.id} comment={comment} />
+                  {post.comments.map((comment, idx) => (
+                    <Comment key={idx} comment={comment} />
                   ))}
                 </VStack>
-                <Divider my={4} bg={'gray.800'} />
-                <PostFooter isProfilePic={true} post={post} />
+                <Divider my={4} bg={'gray.8000'} />
+
+                <PostFooter isProfilePage={true} post={post} />
               </Flex>
             </Flex>
           </ModalBody>

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ const config = {
   useSystemColorMode: false,
 };
 
+// 3. extend the theme
 const theme = extendTheme({ config, styles });
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -1,11 +1,11 @@
 import { Avatar, Flex, Text } from '@chakra-ui/react';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { timeAgo } from '../../utils/timeAgo';
 import useUserProfileStore from '../../store/userProfileStore';
 
 const Caption = ({ post }) => {
   const userProfile = useUserProfileStore((state) => state.userProfile);
+
   return (
     <Flex gap={4}>
       <Link to={`/${userProfile.username}`}>

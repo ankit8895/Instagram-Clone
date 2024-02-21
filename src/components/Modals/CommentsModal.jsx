@@ -17,9 +17,8 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
   const { handlePostComment, isCommenting } = usePostComment();
   const commentRef = useRef(null);
   const commentsContainerRef = useRef(null);
-
   const handleSubmitComment = async (e) => {
-    //do not refresh the page, prevent it
+    // do not refresh the page, prevent it
     e.preventDefault();
     await handlePostComment(post.id, commentRef.current.value);
     commentRef.current.value = '';
@@ -35,7 +34,7 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
         scrollToBottom();
       }, 100);
     }
-  }, [isOpen, post.comments.length, length]);
+  }, [isOpen, post.comments.length]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>

@@ -5,7 +5,7 @@ import useUserProfileStore from '../store/userProfileStore';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../firebase/firebase';
 
-const useGetUserPost = () => {
+const useGetUserPosts = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { posts, setPosts } = usePostStore();
   const showToast = useShowToast();
@@ -16,6 +16,7 @@ const useGetUserPost = () => {
       if (!userProfile) return;
       setIsLoading(true);
       setPosts([]);
+
       try {
         const q = query(
           collection(firestore, 'posts'),
@@ -44,4 +45,4 @@ const useGetUserPost = () => {
   return { isLoading, posts };
 };
 
-export default useGetUserPost;
+export default useGetUserPosts;

@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -9,6 +8,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
 import {
   CommentLogo,
   NotificationsLogo,
@@ -52,15 +52,15 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
         {likes} likes
       </Text>
 
-      {!isProfilePage && (
-        <Text fontSize={'12'} color={'gray'}>
+      {isProfilePage && (
+        <Text fontSize='12' color={'gray'}>
           Posted {timeAgo(post.createdAt)}
         </Text>
       )}
 
       {!isProfilePage && (
         <>
-          <Text fontSize={'sm'} fontWeight={700}>
+          <Text fontSize='sm' fontWeight={700}>
             {creatorProfile?.username}{' '}
             <Text as='span' fontWeight={400}>
               {post.caption}
@@ -68,7 +68,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
           </Text>
           {post.comments.length > 0 && (
             <Text
-              fontSize={'sm'}
+              fontSize='sm'
               color={'gray'}
               cursor={'pointer'}
               onClick={onOpen}
@@ -82,6 +82,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
           ) : null}
         </>
       )}
+
       {authUser && (
         <Flex
           alignItems={'center'}

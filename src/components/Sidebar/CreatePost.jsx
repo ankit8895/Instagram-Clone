@@ -21,6 +21,7 @@ import { BsFillImageFill } from 'react-icons/bs';
 import { useRef, useState } from 'react';
 import usePreviewImg from '../../hooks/usePreviewImg';
 import useShowToast from '../../hooks/useShowToast';
+import useAuthStore from '../../store/authStore';
 import usePostStore from '../../store/postStore';
 import useUserProfileStore from '../../store/userProfileStore';
 import { useLocation } from 'react-router-dom';
@@ -33,15 +34,14 @@ import {
 } from 'firebase/firestore';
 import { firestore, storage } from '../../firebase/firebase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
-import useAuthStore from '../../store/authStore';
 
 const CreatePost = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [caption, setCaption] = useState('');
   const imageRef = useRef(null);
   const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
-  const { isLoading, handleCreatePost } = useCreatePost();
   const showToast = useShowToast();
+  const { isLoading, handleCreatePost } = useCreatePost();
 
   const handlePostCreation = async () => {
     try {
@@ -108,7 +108,6 @@ const CreatePost = () => {
               }}
               size={16}
             />
-
             {selectedFile && (
               <Flex
                 mt={5}
@@ -124,7 +123,7 @@ const CreatePost = () => {
                   onClick={() => {
                     setSelectedFile(null);
                   }}
-                ></CloseButton>
+                />
               </Flex>
             )}
           </ModalBody>
@@ -178,6 +177,7 @@ function useCreatePost() {
 
       if (userProfile.uid === authUser.uid)
         createPost({ ...newPost, id: postDocRef.id });
+
       if (pathname !== '/' && userProfile.uid === authUser.uid)
         addPost({ ...newPost, id: postDocRef.id });
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, Flex, Link, Tooltip } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { InstagramLogo, InstagramMobileLogo } from '../../assets/constants';
@@ -20,32 +19,30 @@ const Sidebar = () => {
       left={0}
       px={{ base: 2, md: 4 }}
     >
-      <Flex direction={'column'} gap={10} w='full' height='full'>
+      <Flex direction={'column'} gap={10} w='full' height={'full'}>
         <Link
           to={'/'}
           as={RouterLink}
           pl={2}
           display={{ base: 'none', md: 'block' }}
-          cursor={'pointer'}
+          cursor='pointer'
         >
           <InstagramLogo />
         </Link>
-
         <Link
           to={'/'}
           as={RouterLink}
           p={2}
           display={{ base: 'block', md: 'none' }}
-          cursor={'pointer'}
           borderRadius={6}
           _hover={{
             bg: 'whiteAlpha.200',
           }}
           w={10}
+          cursor='pointer'
         >
           <InstagramMobileLogo />
         </Link>
-
         <Flex direction={'column'} gap={5} cursor={'pointer'}>
           <SidebarItems />
         </Flex>
@@ -72,10 +69,10 @@ const Sidebar = () => {
           >
             <BiLogOut size={25} />
             <Button
+              display={{ base: 'none', md: 'block' }}
               variant={'ghost'}
               _hover={{ bg: 'transparent' }}
               isLoading={isLoggingOut}
-              display={{ base: 'none', md: 'block' }}
             >
               Logout
             </Button>

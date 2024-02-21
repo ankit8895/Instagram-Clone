@@ -1,5 +1,4 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import React from 'react';
 import { BsBookmark, BsGrid3X3, BsSuitHeart } from 'react-icons/bs';
 
 const ProfileTabs = () => {
@@ -14,7 +13,7 @@ const ProfileTabs = () => {
       <Flex
         borderTop={'1px solid white'}
         alignItems={'center'}
-        p={3}
+        p='3'
         gap={1}
         cursor={'pointer'}
       >
@@ -26,7 +25,7 @@ const ProfileTabs = () => {
         </Text>
       </Flex>
 
-      <Flex alignItems={'center'} p={3} gap={1} cursor={'pointer'}>
+      <Flex alignItems={'center'} p='3' gap={1} cursor={'pointer'}>
         <Box fontSize={20}>
           <BsBookmark />
         </Box>
@@ -35,7 +34,7 @@ const ProfileTabs = () => {
         </Text>
       </Flex>
 
-      <Flex alignItems={'center'} p={3} gap={1} cursor={'pointer'}>
+      <Flex alignItems={'center'} p='3' gap={1} cursor={'pointer'}>
         <Box fontSize={20}>
           <BsSuitHeart fontWeight={'bold'} />
         </Box>

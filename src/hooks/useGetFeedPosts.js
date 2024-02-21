@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import usePostStore from '../store/postStore';
 import useAuthStore from '../store/authStore';
 import useShowToast from './useShowToast';

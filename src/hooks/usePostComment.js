@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useShowToast from './useShowToast';
 import useAuthStore from '../store/authStore';
-import usePostStore from '../store/postStore';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { firestore } from '../firebase/firebase';
+import usePostStore from '../store/postStore';
 
 const usePostComment = () => {
   const [isCommenting, setIsCommenting] = useState(false);
@@ -22,7 +22,6 @@ const usePostComment = () => {
       createdBy: authUser.uid,
       postId,
     };
-
     try {
       await updateDoc(doc(firestore, 'posts', postId), {
         comments: arrayUnion(newComment),

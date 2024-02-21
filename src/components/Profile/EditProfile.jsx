@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import {
   Avatar,
   Button,
@@ -16,6 +15,7 @@ import {
   ModalOverlay,
   Stack,
 } from '@chakra-ui/react';
+import { useRef, useState } from 'react';
 import useAuthStore from '../../store/authStore';
 import usePreviewImg from '../../hooks/usePreviewImg';
 import useEditProfile from '../../hooks/useEditProfile';
@@ -27,7 +27,6 @@ const EditProfile = ({ isOpen, onClose }) => {
     username: '',
     bio: '',
   });
-
   const authUser = useAuthStore((state) => state.user);
   const fileRef = useRef(null);
   const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();

@@ -1,5 +1,4 @@
-import React from 'react';
-import { Avatar, Flex, Text, Button } from '@chakra-ui/react';
+import { Avatar, Button, Flex, Text } from '@chakra-ui/react';
 import useLogout from '../../hooks/useLogout';
 import useAuthStore from '../../store/authStore';
 import { Link } from 'react-router-dom';
@@ -9,6 +8,7 @@ const SuggestedHeader = () => {
   const authUser = useAuthStore((state) => state.user);
 
   if (!authUser) return null;
+
   return (
     <Flex justifyContent={'space-between'} alignItems={'center'} w={'full'}>
       <Flex alignItems={'center'} gap={2}>
@@ -28,9 +28,9 @@ const SuggestedHeader = () => {
         fontSize={14}
         fontWeight={'medium'}
         color={'blue.400'}
-        cursor={'pointer'}
         onClick={handleLogout}
         isLoading={isLoggingOut}
+        cursor={'pointer'}
       >
         Log out
       </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useShowToast from './useShowToast';
 
 const usePreviewImg = () => {
@@ -10,11 +10,10 @@ const usePreviewImg = () => {
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
       if (file.size > maxFileSizeInBytes) {
-        showToast('Error', 'File size must be less than 2 MB', 'error');
+        showToast('Error', 'File size must be less than 2MB', 'error');
         setSelectedFile(null);
         return;
       }
-
       const reader = new FileReader();
 
       reader.onloadend = () => {

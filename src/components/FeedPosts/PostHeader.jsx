@@ -1,11 +1,10 @@
-import React from 'react';
 import {
-  Flex,
-  Box,
   Avatar,
-  SkeletonCircle,
-  Skeleton,
+  Box,
   Button,
+  Flex,
+  Skeleton,
+  SkeletonCircle,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import useFollowUser from '../../hooks/useFollowUser';
@@ -15,6 +14,7 @@ const PostHeader = ({ post, creatorProfile }) => {
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(
     post.createdBy
   );
+
   return (
     <Flex
       justifyContent={'space-between'}
@@ -32,10 +32,10 @@ const PostHeader = ({ post, creatorProfile }) => {
             />
           </Link>
         ) : (
-          <SkeletonCircle size={10} />
+          <SkeletonCircle size='10' />
         )}
 
-        <Flex fontSize={12} fontWeight={'bold'} gap={2}>
+        <Flex fontSize={12} fontWeight={'bold'} gap='2'>
           {creatorProfile ? (
             <Link to={`/${creatorProfile.username}`}>
               {creatorProfile.username}
@@ -43,6 +43,7 @@ const PostHeader = ({ post, creatorProfile }) => {
           ) : (
             <Skeleton w={'100px'} h={'10px'} />
           )}
+
           <Box color={'gray.500'}>• {timeAgo(post.createdAt)}</Box>
         </Flex>
       </Flex>
@@ -53,7 +54,9 @@ const PostHeader = ({ post, creatorProfile }) => {
           fontSize={12}
           color={'blue.500'}
           fontWeight={'bold'}
-          _hover={{ color: 'white' }}
+          _hover={{
+            color: 'white',
+          }}
           transition={'0.2s ease-in-out'}
           onClick={handleFollowUser}
           isLoading={isUpdating}

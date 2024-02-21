@@ -1,26 +1,24 @@
-import React from 'react';
 import {
-  AvatarGroup,
   Avatar,
-  Flex,
-  VStack,
-  Text,
+  AvatarGroup,
   Button,
+  Flex,
+  Text,
+  VStack,
   useDisclosure,
 } from '@chakra-ui/react';
-import useGetUserProfileByUsername from '../../hooks/useGetUserProfileByUsername';
+import useUserProfileStore from '../../store/userProfileStore';
 import useAuthStore from '../../store/authStore';
 import EditProfile from './EditProfile';
 import useFollowUser from '../../hooks/useFollowUser';
 
 const ProfileHeader = () => {
-  const { userProfile } = useGetUserProfileByUsername();
+  const { userProfile } = useUserProfileStore();
   const authUser = useAuthStore((state) => state.user);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(
     userProfile?.uid
   );
-
   const visitingOwnProfileAndAuth =
     authUser && authUser.username === userProfile.username;
   const visitingAnotherProfileAndAuth =
@@ -38,8 +36,9 @@ const ProfileHeader = () => {
         alignSelf={'flex-start'}
         mx={'auto'}
       >
-        <Avatar src={userProfile.profilePicURL} alt='As a programmer logo' />
+        <Avatar src={userProfile.profilePicURL} alt='user profile pic' />
       </AvatarGroup>
+
       <VStack alignItems={'start'} gap={2} mx={'auto'} flex={1}>
         <Flex
           gap={4}
@@ -52,7 +51,7 @@ const ProfileHeader = () => {
             {userProfile.username}
           </Text>
           {visitingOwnProfileAndAuth && (
-            <Flex gap={4} alignItems={'center'} justifyItems={'center'}>
+            <Flex gap={4} alignItems={'center'} justifyContent={'center'}>
               <Button
                 bg={'white'}
                 color={'black'}
@@ -64,9 +63,8 @@ const ProfileHeader = () => {
               </Button>
             </Flex>
           )}
-
           {visitingAnotherProfileAndAuth && (
-            <Flex gap={4} alignItems={'center'} justifyItems={'center'}>
+            <Flex gap={4} alignItems={'center'} justifyContent={'center'}>
               <Button
                 bg={'blue.500'}
                 color={'white'}
@@ -83,21 +81,19 @@ const ProfileHeader = () => {
 
         <Flex alignItems={'center'} gap={{ base: 2, sm: 4 }}>
           <Text fontSize={{ base: 'xs', md: 'sm' }}>
-            <Text as={'span'} fontWeight={'bold'} mr={1}>
+            <Text as='span' fontWeight={'bold'} mr={1}>
               {userProfile.posts.length}
             </Text>
             Posts
           </Text>
-
           <Text fontSize={{ base: 'xs', md: 'sm' }}>
-            <Text as={'span'} fontWeight={'bold'} mr={1}>
+            <Text as='span' fontWeight={'bold'} mr={1}>
               {userProfile.followers.length}
             </Text>
             Followers
           </Text>
-
           <Text fontSize={{ base: 'xs', md: 'sm' }}>
-            <Text as={'span'} fontWeight={'bold'} mr={1}>
+            <Text as='span' fontWeight={'bold'} mr={1}>
               {userProfile.following.length}
             </Text>
             Following
